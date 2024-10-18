@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    ports:
+      - 3307:3306
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    restart: unless-stopped # Đảm bảo container khởi động lại nếu nó bị lỗi hoặc máy chủ bị khởi động lại
+
+  # app:
+  #   build: .
+  #   container_name: app
+  #   ports:
+  #     - ${PORT}:${PORT}
+  #   volumes:
+  #     - .:/app
+
+volumes:
+  db_data: # Định nghĩa volume để lưu trữ dữ liệu MySQL
